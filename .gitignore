@@ -1,14 +1,18 @@
-*.iml
-.gradle
-.idea/
+# Ignore all hidden files and folders
+.*
+
+# BUT, do not ignore these specific essentials:
+!.gitignore
+!.github/
+!.editorconfig
+!.mvn/
+!.spec/
+
 /build
 /captures
-.externalNativeBuild
-.cxx
 local.properties
 
 # Project exclude paths
 /app/build/
 /app/build/intermediates/javac/release/classes/
-/.claudeignore
-/.vscode/
+
