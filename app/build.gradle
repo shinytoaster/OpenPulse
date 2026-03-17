@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\jong\\keystore\\keystore')
+            storePassword 'a10bora'
+            keyPassword 'a10bora'
+            keyAlias 'android'
+        }
+    }
+    namespace 'net.shinytoaster.openpulse.wear'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "net.shinytoaster.openpulse.wear"
+        minSdk 34 // Wear OS 5.0+
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+        signingConfig signingConfigs.release
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.13.0'
+    implementation 'androidx.core:core-ktx:1.13.0'
+    implementation 'androidx.activity:activity:1.8.2'
+    implementation 'androidx.concurrent:concurrent-futures:1.1.0'
+    
+    // Health Services
+    implementation 'androidx.health:health-services-client:1.1.0-alpha03'
+    
+    // Guava (for ListenableFuture)
+    implementation 'com.google.guava:guava:32.1.3-android'
+
+    // Wear OS
+    implementation 'com.google.android.gms:play-services-wearable:18.1.0'
+    implementation 'androidx.wear:wear:1.3.0'
+
+    // Tiles
+    implementation 'androidx.wear.tiles:tiles:1.4.1'
+    implementation 'androidx.wear.tiles:tiles-material:1.4.1'
+    implementation 'androidx.wear.protolayout:protolayout:1.2.1'
+    implementation 'androidx.wear.protolayout:protolayout-material:1.2.1'
+    implementation 'androidx.wear.protolayout:protolayout-expression:1.2.1'
+}

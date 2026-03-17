@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">OpenPulse</string>
+    <string name="tile_label">OpenPulse</string>
+    <string name="tile_description">Start or stop heart rate broadcasting.</string>
+    <string name="broadcast_ready">Broadcast Ready</string>
+    <string name="broadcasting">Broadcasting HR</string>
+    <string name="paused">Paused</string>
+</resources>

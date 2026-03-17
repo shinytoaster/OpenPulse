@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The resource version you will increment when you change the tile layout -->
+    <string name="pulse_tile_resources_version">1.0</string>
+</resources>

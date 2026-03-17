@@ -1,0 +1,12 @@
+*.iml
+.gradle
+.idea/
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Project exclude paths
+/app/build/
+/app/build/intermediates/javac/release/classes/
