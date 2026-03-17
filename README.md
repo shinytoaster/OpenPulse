@@ -1,8 +1,8 @@
-# OpenPulse
+# <img src="assets/logo.png" width="40" height="40" align="center"> OpenPulse
 
 **OpenPulse** is a standalone application designed for **Wear OS 5.0+** cyclists and athletes. It broadcasts real-time heart rate data from your watch's sensors to bicycle head units (like a Hammerhead Karoo, Garmin Edge, or Wahoo ELEMNT) using the standard Bluetooth SIG Heart Rate Profile (0x180D).
 
-![OpenPulse Logo](./assets/logo.png)
+
 
 ## Features
 
