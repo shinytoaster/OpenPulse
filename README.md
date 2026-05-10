@@ -8,9 +8,9 @@
 
 - **Standard BLE Heart Rate Profile**: Works as a standard "Heart Rate Strap" for any compatible head unit or fitness app.
 - **Standalone Operation**: No phone required. All tracking and broadcasting happen directly on your Wear OS watch.
-- **Persistent Background Broadcast**: Uses a High-Priority Foreground Service with a WakeLock and **Health Services Batching Overrides** (5s delivery window) to ensure the broadcast remains active even when the watch screen is off.
+- **Persistent Background Broadcast**: Uses a High-Priority Foreground Service with a WakeLock to ensure the broadcast remains active even when the watch screen is off.
 - **Ambient Mode Support**: Fully supports Wear OS Ambient Mode to maintain activity priority and keep the UI (optionally) updated without killing the service.
-- **Modern Health Services API**: Uses the `ExerciseClient` for robust, high-priority sensor access that resists system throttling.
+- **Modern Health Services API**: Uses the `MeasureClient` for continuous background sensor access that allows you to run other workout apps on your watch in parallel!
 - **Standalone Wear OS Tile**: View your real-time heart rate and control the broadcast (Start/Stop) directly from your watch's tiles without opening the full app.
 - **Battery Efficient**: Optimized BLE settings (Balanced mode) to provide a reliable signal without excessive drain.
 
@@ -79,7 +79,7 @@ OpenPulse requires several permissions to reliably track your heart rate and bro
 - **GATT Server**: Implements the standard Heart Rate Service (0x180D) and characteristic (0x2A37).
 - **Service Type**: Uses `FOREGROUND_SERVICE_HEALTH` and `FOREGROUND_SERVICE_CONNECTED_DEVICE`.
 - **Background Persistence**: Uses a `PARTIAL_WAKE_LOCK` and `AmbientModeSupport`.
-- **Reliability Mode**: Overrides default Health Services batching to guarantee data delivery every 5 seconds.
+- **Parallel Workouts**: Uses `MeasureClient` to allow continuous background tracking without cancelling the watch's native fitness activities.
 
 ## License
 
