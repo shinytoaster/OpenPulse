@@ -16,8 +16,8 @@ android {
         applicationId "net.shinytoaster.openpulse.wear"
         minSdk 34 // Wear OS 5.0+
         targetSdk 34
-        versionCode 1
-        versionName "1.0.0"
+        versionCode 3
+        versionName "1.1.1"
         signingConfig signingConfigs.release
     }
 
