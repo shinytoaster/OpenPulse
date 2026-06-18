@@ -15,7 +15,7 @@ The application follows a **Service-Oriented Architecture** designed for high re
 - **Event-Driven Communication**: Uses standard Android Broadcast Intents for updating the UI and internal service triggers for Tile updates.
 
 ### Core Libraries & Dependencies
-- **Android Health Services (`MeasureClient`)**: Used for passive, real-time sensor data access that operates alongside other workout apps without conflict.
+- **Android Health Services (`ExerciseClient`)**: Used for access to high-fidelity sensor data with persistence across system throttling.
 - **Bluetooth LE GATT API**: Implements the standard Heart Rate Profile.
 - **Wear OS Protolayout & Tiles**: Enables the interactive Wear OS Tile.
 - **Ambient Mode Support**: Standard Wear OS transitions to maintain activity visibility.
@@ -29,8 +29,8 @@ The application follows a **Service-Oriented Architecture** designed for high re
 - **GATT Server**: Broadcasts notifications to all connected and subscribed devices whenever a new BPM reading is received from the sensor.
 
 ### 2. Sensor Integration via Health Services
-- **Implementation**: `HealthServicesManager.java` uses the `MeasureClient` to passively read heart rate sensor data without claiming an exercise session.
-- **Parallel Workout Support**: Unlike `ExerciseClient`, `MeasureClient` does not take exclusive ownership of the exercise slot, allowing users to run native workout apps (e.g., tracking a run or gym session) on the watch simultaneously while OpenPulse broadcasts HR to an external device.
+- **Implementation**: `HealthServicesManager.java` uses the `ExerciseClient` to start a "Walking" (placeholder) exercise to ensure priority sensor access.
+- **Batching Overrides**: Explicitly overrides the system's default sensor batching with `BatchingMode.HEART_RATE_5_SECONDS` to ensure data delivery every 5 seconds, even in background states.
 
 ### 3. Persistent Background Operation
 - **Foreground Service**: `HeartRateService` runs with `health` and `connectedDevice` foreground types.

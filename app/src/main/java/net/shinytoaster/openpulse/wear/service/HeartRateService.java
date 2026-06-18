@@ -55,7 +55,8 @@ public class HeartRateService extends Service {
         Log.i(TAG, "HeartRateService created.");
 
         createNotificationChannel();
-        startForeground(NOTIFICATION_ID, getNotification("Service Ready"));
+        startForeground(NOTIFICATION_ID, getNotification("Service Ready"),
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH | ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE);
 
         bleManager = new BleManager(this);
         healthServicesManager = new HealthServicesManager(this, bpm -> {
@@ -172,7 +173,8 @@ public class HeartRateService extends Service {
         // If the service was already tracking, make sure it stays tracking
         if (isTracking) {
             Log.d(TAG, "onStartCommand: Already tracking, ensuring notification is correct.");
-            startForeground(NOTIFICATION_ID, getNotification("Broadcasting Heart Rate"));
+            startForeground(NOTIFICATION_ID, getNotification("Broadcasting Heart Rate"),
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH | ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE);
         }
         return START_STICKY;
     }

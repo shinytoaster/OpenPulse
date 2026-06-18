@@ -21,7 +21,8 @@
     - When prompted, grant permissions for **Body Sensors**, **Physical Activity**, and **Bluetooth**.
     - **CRITICAL**: For background tracking, when prompted for sensor access, you **must** select **"Allow all the time"** in the system settings.
 3.  **Disable Battery Optimizations**:
-    - The app will prompt you to ignore battery optimizations. **Select "Allow"**. This is essential to prevent the system from shutting down the app during long rides.
+    - The app will prompt you to ignore battery optimizations. **Select "Allow"** (if prompted by your watch).
+    - *Note*: Since OpenPulse registers as the active exercise session on the watch (it pretends to be a workout), it naturally receives maximum system-level background execution priority. There is no need for advanced battery whitelisting or ADB commands.
 4.  **Use the Wear OS Tile**:
     - Swipe left on your watch face to access your tiles.
     - Long-press and tap **"Add Tile"**.
@@ -34,6 +35,14 @@
 6.  **Pause/Stop**: Tap the **"Stop"** (Red) button to save battery.
     - **Stop**: Immediately shuts down the heart rate sensor and releases the CPU WakeLock.
     - **Smart Standby**: The app maintains the Bluetooth connection in a low-power "Standby" state so you can resume instantly.
+
+### Exercise Coexistence (Exclusive Session)
+
+To maintain continuous broadcasting when the watch screen turns off, OpenPulse starts a background exercise session via Health Services. 
+
+Because Wear OS only permits one active exercise tracking session at a time:
+- **No parallel workout tracking on the watch**: You cannot run a native workout tracker (like Samsung Health, Google Fit, or Strava) on the watch in parallel with OpenPulse. Starting another workout session on the watch will immediately preempt and stop the OpenPulse broadcast.
+- **Normal Usage**: This is optimized for users who track their ride metrics (distance, GPS, maps) on their dedicated cycling computer (Karoo, Garmin, Wahoo, etc.) and only use the watch as a heart rate sensor.
 
 > [!IMPORTANT]
 > **Upgrading OpenPulse**: After upgrading the app to a new version, your headunit may lose the Bluetooth pairing. If the sensor stops connecting, please **unpair/forget** "OpenPulse Watch" on your headunit and **re-pair** it as a new sensor.
@@ -79,7 +88,7 @@ OpenPulse requires several permissions to reliably track your heart rate and bro
 - **GATT Server**: Implements the standard Heart Rate Service (0x180D) and characteristic (0x2A37).
 - **Service Type**: Uses `FOREGROUND_SERVICE_HEALTH` and `FOREGROUND_SERVICE_CONNECTED_DEVICE`.
 - **Background Persistence**: Uses a `PARTIAL_WAKE_LOCK` and `AmbientModeSupport`.
-- **Parallel Workouts**: Uses `MeasureClient` to allow continuous background tracking without cancelling the watch's native fitness activities.
+- **Exercise Priority**: Uses `ExerciseClient` to start an active workout tracking session, giving the app system-level priority for continuous background sensor reading and BLE broadcasting.
 
 ## License
 
